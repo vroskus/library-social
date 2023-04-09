@@ -1,6 +1,6 @@
 {
   "name": "@vroskus/library-social",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Social",
   "author": "Vilius Roškus <vilius@regattas.eu>",
   "license": "MIT",
@@ -9,9 +9,6 @@
     "url": "git+https://github.com/vroskus/library-social.git"
   },
   "main": "dist/index.js",
-  "files": [
-    "dist/index.js"
-  ],
   "scripts": {
     "postinstall": "npm run build",
     "build": "tsc",
@@ -22,6 +19,7 @@
     "test:e2e:post": "jest-coverage-thresholds-bumper"
   },
   "dependencies": {
+    "@types/axios": "0.14.0",
     "axios": "1.3.4",
     "axios-mock-adapter": "1.21.2"
   },
