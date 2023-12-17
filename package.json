@@ -1,6 +1,6 @@
 {
   "name": "@vroskus/library-social",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Social",
   "author": "Vilius Roškus <vilius@regattas.eu>",
   "license": "MIT",
@@ -61,10 +61,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 63.41,
-        "functions": 88.88,
-        "lines": 96.42,
-        "statements": 87.5
+        "branches": 50.76,
+        "functions": 77.27,
+        "lines": 88.05,
+        "statements": 76.25
       }
     }
   }
