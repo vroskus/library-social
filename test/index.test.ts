@@ -1,8 +1,7 @@
 import Social from '../src';
 
 import {
-  facebookMock,
-  googleMock,
+  socialPayloadMock,
 } from '../src/mocks';
 
 describe(
@@ -16,24 +15,20 @@ describe(
     it(
       'shoud get FACEBOOK auth data',
       async () => {
-        const params = {
-          token: 'random-string',
-        };
-        const data = await service.authenticateFacebook(params);
+        const token = 'random-string';
+        const data = await service.authenticateFacebook(token);
 
-        expect(data).toMatchObject(facebookMock);
+        expect(data).toMatchObject(socialPayloadMock);
       },
     );
 
     it(
       'shoud get GOOGLE auth data',
       async () => {
-        const params = {
-          token: 'random-string',
-        };
-        const data = await service.authenticateGoogle(params);
+        const token = 'random-string';
+        const data = await service.authenticateGoogle(token);
 
-        expect(data).toMatchObject(googleMock);
+        expect(data).toMatchObject(socialPayloadMock);
       },
     );
   },

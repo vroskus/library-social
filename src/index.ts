@@ -2,10 +2,17 @@
 import type {
   Axios,
 } from 'axios';
+import type {
+  $Schema,
+} from '@vroskus/library-validator';
 
 // Helpers
 import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
+import {
+  validateResponse,
+  Validator,
+} from '@vroskus/library-validator';
 
 // Mocks
 import {
@@ -18,9 +25,19 @@ import type {
   $Config as Config,
   $FacebookPayload,
   $GooglePayload,
+  $SocialPayload,
 } from './types';
 
 export type $Config = Config;
+
+// Schemas
+const socialPayloadSchema: $Schema = () => Validator.object().keys({
+  Email: Validator.string().required(),
+  EmailVerified: Validator.boolean().required(),
+  Name: Validator.string().required(),
+  PictureUrl: Validator.string().allow(null),
+  Uid: Validator.string().required(),
+});
 
 class Social<C extends Config> {
   connection: Axios;
@@ -60,39 +77,61 @@ class Social<C extends Config> {
     });
   }
 
-  async authenticateFacebook(params: {
-    token: string;
-  }): Promise<$FacebookPayload> {
+  async authenticateFacebook(token: string): Promise<$SocialPayload> {
     const url = 'https://graph.facebook.com/v9.0/me';
     const request = {
       params: {
-        access_token: params.token,
+        access_token: token,
         fields: 'name,email,picture',
       },
     };
-    const response = await this.connection.get(
+    const response = await this.connection.get<$FacebookPayload>(
       url,
       request,
     );
 
-    return response.data;
+    const output = {
+      Email: response.data.email,
+      EmailVerified: true,
+      Name: response.data.name,
+      PictureUrl: response.data.picture ? response.data.picture.data.url : null,
+      Uid: String(response.data.id),
+    };
+
+    const validOutput: $SocialPayload = validateResponse(
+      output,
+      socialPayloadSchema,
+    );
+
+    return validOutput;
   }
 
-  async authenticateGoogle(params: {
-    token: string;
-  }): Promise<$GooglePayload> {
+  async authenticateGoogle(token: string): Promise<$SocialPayload> {
     const url = 'https://www.googleapis.com/oauth2/v2/userinfo';
     const request = {
       params: {
-        access_token: params.token,
+        access_token: token,
       },
     };
-    const response = await this.connection.get(
+    const response = await this.connection.get<$GooglePayload>(
       url,
       request,
     );
 
-    return response.data;
+    const output = {
+      Email: response.data.email,
+      EmailVerified: response.data.verified_email,
+      Name: response.data.name,
+      PictureUrl: response.data.picture,
+      Uid: String(response.data.id),
+    };
+
+    const validOutput: $SocialPayload = validateResponse(
+      output,
+      socialPayloadSchema,
+    );
+
+    return validOutput;
   }
 }
 

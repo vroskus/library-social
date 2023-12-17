@@ -25,3 +25,11 @@ export type $GooglePayload = {
   picture: string;
   verified_email: boolean;
 };
+
+export type $SocialPayload = {
+  Uid: string;
+  Name: string;
+  Email: string;
+  EmailVerified: boolean;
+  PictureUrl: string | null;
+};
