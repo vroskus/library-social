@@ -28,7 +28,7 @@ import type {
   $SocialPayload,
 } from './types';
 
-export type $Config = Config;
+export * from './types';
 
 // Schemas
 const socialPayloadSchema: $Schema = () => Validator.object().keys({
