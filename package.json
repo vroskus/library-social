@@ -1,6 +1,6 @@
 {
   "name": "@vroskus/library-social",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Social",
   "author": "Vilius Roškus <vilius@regattas.eu>",
   "license": "MIT",
@@ -22,6 +22,7 @@
     "test:e2e:post": "jest-coverage-thresholds-bumper"
   },
   "dependencies": {
+    "@vroskus/library-validator": "1.0.13",
     "axios": "1.6.2",
     "axios-mock-adapter": "1.22.0"
   },
@@ -60,10 +61,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 64.1,
-        "functions": 88.23,
-        "lines": 95.55,
-        "statements": 84.61
+        "branches": 63.41,
+        "functions": 88.88,
+        "lines": 96.42,
+        "statements": 87.5
       }
     }
   }
