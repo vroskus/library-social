@@ -10,8 +10,8 @@ import type {
 import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import {
-  validateResponse,
   Validator,
+  validateResponse,
 } from '@vroskus/library-validator';
 
 // Mocks
@@ -22,10 +22,10 @@ import {
 
 // Types
 import type {
-  $Config as Config,
   $FacebookPayload,
   $GooglePayload,
   $SocialPayload,
+  $Config as Config,
 } from './types';
 
 export * from './types';

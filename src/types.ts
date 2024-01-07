@@ -27,9 +27,9 @@ export type $GooglePayload = {
 };
 
 export type $SocialPayload = {
-  Uid: string;
-  Name: string;
   Email: string;
   EmailVerified: boolean;
-  PictureUrl: string | null;
+  Name: string;
+  PictureUrl: null | string;
+  Uid: string;
 };
