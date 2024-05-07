@@ -22,7 +22,7 @@
     "test:e2e:post": "jest-coverage-thresholds-bumper"
   },
   "dependencies": {
-    "@vroskus/library-validator": "^1.0.20",
+    "@vroskus/library-validator": "^1.0.22",
     "axios": "^1.6.8",
     "axios-mock-adapter": "^1.22.0"
   },
