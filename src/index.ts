@@ -10,8 +10,8 @@ import type {
 import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import {
-  Validator,
   validateResponse,
+  Validator,
 } from '@vroskus/library-validator';
 
 // Mocks
