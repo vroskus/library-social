@@ -39,6 +39,8 @@ const socialPayloadSchema: $Schema = () => Validator.object().keys({
   Uid: Validator.string().required(),
 });
 
+const successStatus: number = 200;
+
 class Social<C extends Config> {
   connection: Axios;
 
@@ -60,20 +62,20 @@ class Social<C extends Config> {
     });
   }
 
-  // eslint-disable-next-line
+  /* eslint-disable-next-line class-methods-use-this */
   #setupMock(): void {
     const mock = new AxiosMockAdapter(axios);
 
     mock.onGet('https://graph.facebook.com/v9.0/me').reply(() => {
       const responseBody: $FacebookPayload = facebookMock;
 
-      return [200, responseBody];
+      return [successStatus, responseBody];
     });
 
     mock.onGet(/https:\/\/www.googleapis.com\/oauth2\/v2\/userinfo/).reply(() => {
       const responseBody: $GooglePayload = googleMock;
 
-      return [200, responseBody];
+      return [successStatus, responseBody];
     });
   }
 

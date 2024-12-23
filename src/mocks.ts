@@ -8,7 +8,7 @@ import type {
 const id = '123';
 const name = 'user';
 const email = 'user@email.com';
-const picture = 'http://picture.url';
+const picture = 'https://picture.url';
 
 export const facebookMock: $FacebookPayload = {
   email,
