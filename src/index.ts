@@ -1,6 +1,6 @@
 // Global Types
 import type {
-  Axios,
+  AxiosInstance,
 } from 'axios';
 import type {
   $Schema,
@@ -11,7 +11,7 @@ import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import {
   validateResponse,
-  Validator,
+  z,
 } from '@vroskus/library-validator';
 
 // Mocks
@@ -31,18 +31,18 @@ import type {
 export * from './types';
 
 // Schemas
-const socialPayloadSchema: $Schema = () => Validator.object().keys({
-  Email: Validator.string().required(),
-  EmailVerified: Validator.boolean().required(),
-  Name: Validator.string().required(),
-  PictureUrl: Validator.string().allow(null),
-  Uid: Validator.string().required(),
+const socialPayloadSchema: $Schema = z.object({
+  Email: z.string(),
+  EmailVerified: z.boolean(),
+  Name: z.string(),
+  PictureUrl: z.string().nullable(),
+  Uid: z.string(),
 });
 
 const successStatus: number = 200;
 
 class Social<C extends Config> {
-  connection: Axios;
+  connection: AxiosInstance;
 
   constructor({
     mock,
