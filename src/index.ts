@@ -69,13 +69,19 @@ class Social<C extends Config> {
     mock.onGet('https://graph.facebook.com/v9.0/me').reply(() => {
       const responseBody: $FacebookPayload = facebookMock;
 
-      return [successStatus, responseBody];
+      return [
+        successStatus,
+        responseBody,
+      ];
     });
 
     mock.onGet(/https:\/\/www.googleapis.com\/oauth2\/v2\/userinfo/).reply(() => {
       const responseBody: $GooglePayload = googleMock;
 
-      return [successStatus, responseBody];
+      return [
+        successStatus,
+        responseBody,
+      ];
     });
   }
 
